@@ -12,11 +12,14 @@ import (
 
 func main() {
 	f := os.Args[1]
-	fmt.Println("command: ", f)
+
+	if f == "init" {
+		initIssue()
+	} else {
+		checkInit()
+	}
 
 	switch f {
-	case "init":
-		initIssue()
 	case "add":
 		addIssue()
 	case "fix":
@@ -124,4 +127,11 @@ func showIssue(id int) {
 
 	}
 	fmt.Println(string(rawissue))
+}
+
+func checkInit() {
+	if _, err := os.Stat(".issue/"); os.IsNotExist(err) {
+		fmt.Println("Issue not inited here")
+		os.Exit(0)
+	}
 }
