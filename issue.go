@@ -22,6 +22,9 @@ func main() {
 	case "fix":
 		id := s2i.ParseInt(os.Args[2], -1)
 		fixIssue(id)
+	case "show":
+		id := s2i.ParseInt(os.Args[2], -1)
+		showIssue(id)
 	}
 }
 
@@ -113,4 +116,12 @@ func addIssue() {
 
 func fixIssue(id int) {
 	os.Rename(fmt.Sprintf(".issue/%d", id), fmt.Sprintf(".issue/%d.done", id))
+}
+
+func showIssue(id int) {
+	rawissue, err := ioutil.ReadFile(fmt.Sprintf(".issue/%d", id))
+	if err != nil {
+
+	}
+	fmt.Println(string(rawissue))
 }
