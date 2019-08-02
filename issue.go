@@ -13,6 +13,11 @@ import (
 )
 
 func main() {
+	if len(os.Args) < 2 {
+		log.Println("no command passed")
+		return
+	}
+
 	f := os.Args[1]
 
 	if f == "init" {
@@ -32,6 +37,8 @@ func main() {
 		showIssue(id)
 	case "list":
 		listIssue()
+	default:
+		log.Println(fmt.Sprintf("invalid command: %s", f))
 	}
 }
 
@@ -170,7 +177,7 @@ func checkInit() {
 
 func listIssue() {
 	rawlist, err := ioutil.ReadFile(".issue/index/list")
-	if err != nil {
+	if err != nil 
 		log.Println(err)
 	}
 	fmt.Println(string(rawlist))
