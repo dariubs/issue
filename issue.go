@@ -177,7 +177,7 @@ func checkInit() {
 
 func listIssue() {
 	rawlist, err := ioutil.ReadFile(".issue/index/list")
-	if err != nil 
+	if err != nil {
 		log.Println(err)
 	}
 	fmt.Println(string(rawlist))
